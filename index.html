@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asma Ijaz - React Native Developer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,113 +14,224 @@
             box-sizing: border-box;
         }
 
+        :root {
+            /* Modern Professional Color Palette */
+            --primary: #0F172A;
+            --secondary: #1E293B;
+            --accent: #3B82F6;
+            --accent-light: #60A5FA;
+            --accent-dark: #2563EB;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --surface: #F8FAFC;
+            --surface-alt: #F1F5F9;
+            --text-primary: #0F172A;
+            --text-secondary: #64748B;
+            --text-muted: #94A3B8;
+            --border: #E2E8F0;
+            --white: #FFFFFF;
+            
+            /* Gradient overlays */
+            --gradient-primary: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            --gradient-surface: linear-gradient(135deg, #F8FAFC 0%, #E0E7FF 100%);
+            --gradient-dark: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--surface);
+            color: var(--text-primary);
+            line-height: 1.6;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
-        /* Header Section */
+        /* Enhanced Header */
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 60px 40px;
-            text-align: center;
-            color: white;
+            background: var(--gradient-dark);
+            padding: 80px 40px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
         }
 
         .profile-section {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .profile-image {
-            width: 150px;
-            height: 150px;
+        .profile-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: var(--accent-light);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .profile-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--success);
             border-radius: 50%;
-            background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            font-weight: bold;
-            border: 5px solid white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .profile-info {
-            text-align: left;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
 
         .profile-info h1 {
-            font-size: 42px;
-            margin-bottom: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
         }
 
         .profile-info h2 {
             font-size: 24px;
-            font-weight: 400;
-            opacity: 0.9;
-            margin-bottom: 15px;
+            font-weight: 500;
+            color: var(--accent-light);
+            margin-bottom: 24px;
         }
 
         .profile-info p {
-            max-width: 500px;
-            line-height: 1.6;
-            opacity: 0.95;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin-bottom: 32px;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         /* Skills Section */
         .skills-section {
-            padding: 60px 40px;
-            background: #f8f9fa;
+            padding: 100px 40px;
+            background: var(--white);
+        }
+
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
         }
 
         .section-title {
-            font-size: 32px;
-            margin-bottom: 30px;
-            color: #333;
-            border-left: 5px solid #667eea;
-            padding-left: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .skill-category {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
 
         .skill-category h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 18px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
         }
 
         .skill-category ul {
@@ -125,112 +239,140 @@
         }
 
         .skill-category li {
-            padding: 8px 0;
-            color: #666;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 10px 0;
+            color: var(--text-secondary);
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .skill-category li:last-child {
-            border-bottom: none;
+        .skill-category li::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: 600;
         }
 
         /* Projects Section */
         .projects-section {
-            padding: 60px 40px;
-            background: white;
+            padding: 100px 40px;
+            background: var(--surface);
         }
 
         .project-showcase {
-            margin-bottom: 80px;
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
 
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
+        .project-showcase:hover {
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.1);
         }
 
-        .project-title-section h2 {
-            font-size: 36px;
-            color: #333;
-            margin-bottom: 10px;
+        .project-content {
+            padding: 48px;
         }
 
         .project-category {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
             font-weight: 600;
-            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
         }
 
         .project-description {
-            color: #666;
+            font-size: 17px;
             line-height: 1.8;
-            max-width: 600px;
-            margin-bottom: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
         }
 
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            margin-bottom: 32px;
         }
 
         .tech-tag {
-            background: #f0f0f0;
+            background: var(--surface-alt);
+            color: var(--text-secondary);
             padding: 8px 16px;
-            border-radius: 20px;
+            border-radius: 8px;
             font-size: 13px;
-            color: #667eea;
             font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
         }
 
         .store-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 20px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
         }
 
         .store-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.35);
         }
 
         /* Screenshot Gallery */
         .screenshot-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
-            margin-top: 30px;
+            padding: 0 48px 48px;
         }
 
         .screenshot-item {
             position: relative;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: #f8f9fa;
+            background: var(--surface);
             aspect-ratio: 9/19;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
 
         .screenshot-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
         }
 
         .screenshot-item img {
@@ -240,114 +382,251 @@
             display: block;
         }
 
-        /* Features List */
+        /* Features Section */
         .features-section {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 30px;
+            background: var(--surface);
+            padding: 40px 48px 48px;
+            margin-top: 1px;
         }
 
         .features-section h3 {
-            color: #667eea;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text-primary);
             font-size: 20px;
-            margin-bottom: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
         }
 
         .features-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
         }
 
         .feature-item {
-            padding: 15px;
-            background: white;
+            padding: 16px 20px;
+            background: var(--white);
             border-radius: 10px;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: flex-start;
+            gap: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .feature-item:hover {
+            border-color: var(--accent-light);
+            background: var(--surface);
         }
 
         .feature-icon {
-            width: 10px;
-            height: 10px;
-            background: #667eea;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
             border-radius: 50%;
             flex-shrink: 0;
+            margin-top: 8px;
         }
 
         .feature-text {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Other Projects Grid */
+        .other-projects {
+            margin-top: 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .other-projects h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 40px;
+            letter-spacing: -0.02em;
+        }
+
+        .other-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(59, 130, 246, 0.12);
+        }
+
+        .project-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+
+        .project-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-card-tag {
+            background: var(--surface-alt);
+            color: var(--text-secondary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1px solid var(--border);
         }
 
         /* Contact Section */
         .contact-section {
-            padding: 60px 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 100px 40px;
+            background: var(--gradient-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid2" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid2)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
         }
 
         .contact-section h2 {
-            font-size: 32px;
-            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
         }
 
         .contact-section p {
-            margin-bottom: 30px;
-            opacity: 0.9;
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+            line-height: 1.7;
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
         .contact-button {
-            background: white;
-            color: #667eea;
-            padding: 15px 30px;
-            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            color: var(--text-primary);
+            padding: 16px 32px;
+            border-radius: 10px;
             text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: inline-block;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
 
         .contact-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(255, 255, 255, 0.2);
+            background: var(--accent);
+            color: var(--white);
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
+            .profile-info h1 {
+                font-size: 36px;
             }
 
-            .profile-info {
-                text-align: center;
-            }
-
-            .header {
-                padding: 40px 20px;
+            .profile-info h2 {
+                font-size: 20px;
             }
 
             .section-title {
-                font-size: 24px;
+                font-size: 32px;
             }
 
-            .project-title-section h2 {
+            .project-title {
                 font-size: 28px;
             }
 
-            .screenshot-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            .header {
+                padding: 60px 20px 80px;
             }
+
+            .skills-section,
+            .projects-section,
+            .contact-section {
+                padding: 60px 20px;
+            }
+
+            .project-content,
+            .screenshot-gallery,
+            .features-section {
+                padding: 32px 20px;
+            }
+
+            .header-stats {
+                gap: 32px;
+            }
+        }
+
+        /* Scroll Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease-out;
         }
     </style>
 </head>
@@ -356,20 +635,41 @@
         <!-- Header Section -->
         <div class="header">
             <div class="profile-section">
-                <div class="profile-image">AI</div>
+                <div class="profile-badge">
+                    Available for new opportunities
+                </div>
                 <div class="profile-info">
                     <h1>Asma Ijaz</h1>
-                    <h2>React Native Developer | Team Lead</h2>
-                    <p>Experienced React Native Developer with 3+ years of expertise in building scalable mobile applications. Specializing in blockchain integration, real-time features, and cross-platform development.</p>
+                    <h2>React Native Developer & Team Lead</h2>
+                    <p>Experienced mobile engineer specializing in building scalable cross-platform applications with expertise in blockchain integration, real-time features, and modern development workflows.</p>
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Projects Delivered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Published Apps</div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Skills Section -->
         <div class="skills-section">
-            <h2 class="section-title">Skills</h2>
+            <div class="section-header">
+                <div class="section-label">Expertise</div>
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-description">Comprehensive expertise in mobile development, blockchain integration, and modern tech stack.</p>
+            </div>
             <div class="skills-grid">
                 <div class="skill-category">
+                    <div class="skill-icon">📱</div>
                     <h3>Mobile Development</h3>
                     <ul>
                         <li>React Native</li>
@@ -381,15 +681,17 @@
                     </ul>
                 </div>
                 <div class="skill-category">
+                    <div class="skill-icon">⛓️</div>
                     <h3>Blockchain & Web3</h3>
                     <ul>
                         <li>WalletConnect</li>
-                        <li>MetaMask</li>
+                        <li>MetaMask Integration</li>
                         <li>DeFi Integration</li>
                         <li>Crypto Transactions</li>
                     </ul>
                 </div>
                 <div class="skill-category">
+                    <div class="skill-icon">🔧</div>
                     <h3>Backend & APIs</h3>
                     <ul>
                         <li>REST APIs</li>
@@ -400,6 +702,7 @@
                     </ul>
                 </div>
                 <div class="skill-category">
+                    <div class="skill-icon">🛠️</div>
                     <h3>Third-Party Tools</h3>
                     <ul>
                         <li>Branch.io</li>
@@ -413,28 +716,31 @@
 
         <!-- Projects Section -->
         <div class="projects-section">
-            <h2 class="section-title">Featured Projects</h2>
+            <div class="section-header">
+                <div class="section-label">Portfolio</div>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-description">Showcasing production-ready applications across various industries.</p>
+            </div>
 
             <!-- Bizb Store -->
             <div class="project-showcase">
-                <div class="project-header">
-                    <div class="project-title-section">
-                        <span class="project-category">E-Commerce / Fashion</span>
-                        <h2>Bizb Store</h2>
-                        <p class="project-description">
-                            A comprehensive fashion e-commerce platform allowing users to submit and sell dresses and shoes. Features detailed product submissions with customizable options, size measurements, bank account integration, and a complete profile management system.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Redux</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Payment Gateway</span>
-                            <span class="tech-tag">Image Upload</span>
-                        </div>
-                        <a href="https://play.google.com/store/apps/details?id=com.bizb_store" target="_blank" class="store-button">
-                            📱 View on Play Store →
-                        </a>
+                <div class="project-content">
+                    <span class="project-category">E-Commerce / Fashion</span>
+                    <h2 class="project-title">Bizb Store</h2>
+                    <p class="project-description">
+                        A comprehensive fashion e-commerce platform allowing users to submit and sell dresses and shoes. Features detailed product submissions with customizable options, size measurements, bank account integration, and a complete profile management system.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Redux</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Payment Gateway</span>
+                        <span class="tech-tag">Image Upload</span>
                     </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.bizb_store" target="_blank" class="store-button">
+                        <span>View on Play Store</span>
+                        <span>→</span>
+                    </a>
                 </div>
                 <div class="screenshot-gallery">
                     <div class="screenshot-item">
@@ -451,7 +757,7 @@
                     </div>
                 </div>
                 <div class="features-section">
-                    <h3>Key Features:</h3>
+                    <h3>Key Features</h3>
                     <div class="features-list">
                         <div class="feature-item">
                             <div class="feature-icon"></div>
@@ -483,24 +789,23 @@
 
             <!-- TrySwitch -->
             <div class="project-showcase">
-                <div class="project-header">
-                    <div class="project-title-section">
-                        <span class="project-category">Real Estate / Fintech</span>
-                        <h2>TrySwitch Investor</h2>
-                        <p class="project-description">
-                            Innovative real estate investment platform offering properties 30-50% below market value. Features property listings, detailed information, chat functionality, task management, and seamless property sharing capabilities.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">TypeScript</span>
-                            <span class="tech-tag">REST APIs</span>
-                            <span class="tech-tag">Real-time Chat</span>
-                            <span class="tech-tag">Google Maps</span>
-                        </div>
-                        <a href="https://play.google.com/store/apps/details?id=com.tryswitch.investor" target="_blank" class="store-button">
-                            📱 View on Play Store →
-                        </a> 
+                <div class="project-content">
+                    <span class="project-category">Real Estate / Fintech</span>
+                    <h2 class="project-title">TrySwitch Investor</h2>
+                    <p class="project-description">
+                        Innovative real estate investment platform offering properties 30-50% below market value. Features property listings, detailed information, chat functionality, task management, and seamless property sharing capabilities.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">REST APIs</span>
+                        <span class="tech-tag">Real-time Chat</span>
+                        <span class="tech-tag">Google Maps</span>
                     </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.tryswitch.investor" target="_blank" class="store-button">
+                        <span>View on Play Store</span>
+                        <span>→</span>
+                    </a>
                 </div>
                 <div class="screenshot-gallery">
                     <div class="screenshot-item">
@@ -517,7 +822,7 @@
                     </div>
                 </div>
                 <div class="features-section">
-                    <h3>Key Features:</h3>
+                    <h3>Key Features</h3>
                     <div class="features-list">
                         <div class="feature-item">
                             <div class="feature-icon"></div>
@@ -549,24 +854,23 @@
 
             <!-- Vibrant Life Med Spa -->
             <div class="project-showcase">
-                <div class="project-header">
-                    <div class="project-title-section">
-                        <span class="project-category">Healthcare / Wellness</span>
-                        <h2>Vibrant Life Med Spa</h2>
-                        <p class="project-description">
-                            Comprehensive spa and wellness booking platform with appointment management, membership systems, service booking, and integrated check-in functionality. Features a complete user journey from booking to service completion.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Push Notifications</span>
-                            <span class="tech-tag">Payment Integration</span>
-                            <span class="tech-tag">Calendar Integration</span>
-                        </div>
-                        <a href="https://play.google.com/store/apps/details?id=com.vibrantspa" target="_blank" class="store-button">
-                            📱 View on Play Store →
-                        </a>
+                <div class="project-content">
+                    <span class="project-category">Healthcare / Wellness</span>
+                    <h2 class="project-title">Vibrant Life Med Spa</h2>
+                    <p class="project-description">
+                        Comprehensive spa and wellness booking platform with appointment management, membership systems, service booking, and integrated check-in functionality. Features a complete user journey from booking to service completion.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Push Notifications</span>
+                        <span class="tech-tag">Payment Integration</span>
+                        <span class="tech-tag">Calendar Integration</span>
                     </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.vibrantspa" target="_blank" class="store-button">
+                        <span>View on Play Store</span>
+                        <span>→</span>
+                    </a>
                 </div>
                 <div class="screenshot-gallery">
                     <div class="screenshot-item">
@@ -580,7 +884,7 @@
                     </div>
                 </div>
                 <div class="features-section">
-                    <h3>Key Features:</h3>
+                    <h3>Key Features</h3>
                     <div class="features-list">
                         <div class="feature-item">
                             <div class="feature-icon"></div>
@@ -610,22 +914,20 @@
                 </div>
             </div>
 
-            <!-- SpaVerse/Fizka -->
+            <!-- SpaVerse -->
             <div class="project-showcase">
-                <div class="project-header">
-                    <div class="project-title-section">
-                        <span class="project-category">Beauty & Wellness</span>
-                        <h2>SpaVerse</h2>
-                        <p class="project-description">
-                            Complete salon and spa discovery platform with comprehensive service listings, nearby salon search with location-based results, service booking, and real-time availability. Features ratings, reviews, and seamless appointment scheduling for beauty and wellness services.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Google Maps</span>
-                            <span class="tech-tag">Geolocation</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Push Notifications</span>
-                        </div>
+                <div class="project-content">
+                    <span class="project-category">Beauty & Wellness</span>
+                    <h2 class="project-title">SpaVerse</h2>
+                    <p class="project-description">
+                        Complete salon and spa discovery platform with comprehensive service listings, nearby salon search with location-based results, service booking, and real-time availability. Features ratings, reviews, and seamless appointment scheduling for beauty and wellness services.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Google Maps</span>
+                        <span class="tech-tag">Geolocation</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Push Notifications</span>
                     </div>
                 </div>
                 <div class="screenshot-gallery">
@@ -643,7 +945,7 @@
                     </div>
                 </div>
                 <div class="features-section">
-                    <h3>Key Features:</h3>
+                    <h3>Key Features</h3>
                     <div class="features-list">
                         <div class="feature-item">
                             <div class="feature-icon"></div>
@@ -683,24 +985,23 @@
 
             <!-- RunVerse -->
             <div class="project-showcase">
-                <div class="project-header">
-                    <div class="project-title-section">
-                        <span class="project-category">Fitness / Health</span>
-                        <h2>RunVerse</h2>
-                        <p class="project-description">
-                            Advanced fitness tracking application with running analytics, integrated shopping experience, lucky draw entries, and comprehensive performance tracking. Features dark mode, achievement system, and social challenges.
-                        </p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Google Maps</span>
-                            <span class="tech-tag">WebSocket</span>
-                            <span class="tech-tag">GPS Tracking</span>
-                            <span class="tech-tag">E-commerce</span>
-                        </div>
-                        <a href="https://play.google.com/store/apps/details?id=com.runverseapp" target="_blank" class="store-button">
-                            📱 View on Play Store →
-                        </a>
+                <div class="project-content">
+                    <span class="project-category">Fitness / Health</span>
+                    <h2 class="project-title">RunVerse</h2>
+                    <p class="project-description">
+                        Advanced fitness tracking application with running analytics, integrated shopping experience, lucky draw entries, and comprehensive performance tracking. Features dark mode, achievement system, and social challenges.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Google Maps</span>
+                        <span class="tech-tag">WebSocket</span>
+                        <span class="tech-tag">GPS Tracking</span>
+                        <span class="tech-tag">E-commerce</span>
                     </div>
+                    <a href="https://play.google.com/store/apps/details?id=com.runverseapp" target="_blank" class="store-button">
+                        <span>View on Play Store</span>
+                        <span>→</span>
+                    </a>
                 </div>
                 <div class="screenshot-gallery">
                     <div class="screenshot-item">
@@ -717,7 +1018,7 @@
                     </div>
                 </div>
                 <div class="features-section">
-                    <h3>Key Features:</h3>
+                    <h3>Key Features</h3>
                     <div class="features-list">
                         <div class="feature-item">
                             <div class="feature-icon"></div>
@@ -747,37 +1048,37 @@
                 </div>
             </div>
 
-            <!-- Additional Projects Grid -->
-            <div style="margin-top: 60px;">
-                <h3 style="font-size: 28px; color: #333; margin-bottom: 30px;">Other Notable Projects</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-                    <div style="background: #f8f9fa; padding: 30px; border-radius: 15px;">
-                        <h4 style="color: #667eea; margin-bottom: 15px;">BIIT LMS</h4>
-                        <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">Mobile-first education platform for managing courses, assignments, and student data.</p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            <span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #667eea;">React Native</span>
-                            <span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #667eea;">Redux</span>
-                            <span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #667eea;">REST APIs</span>
+            <!-- Other Projects -->
+            <div class="other-projects">
+                <h3>Other Notable Projects</h3>
+                <div class="other-projects-grid">
+                    <div class="project-card">
+                        <h4>BIIT LMS</h4>
+                        <p>Mobile-first education platform for managing courses, assignments, and student data with comprehensive learning management features.</p>
+                        <div class="project-card-tags">
+                            <span class="project-card-tag">React Native</span>
+                            <span class="project-card-tag">Redux</span>
+                            <span class="project-card-tag">REST APIs</span>
                         </div>
                     </div>
                     
-                    <div style="background: #f8f9fa; padding: 30px; border-radius: 15px;">
-                        <h4 style="color: #667eea; margin-bottom: 15px;">Mashwara</h4>
-                        <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">Interactive advice-sharing platform with real-time messaging and expert profiles.</p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            <span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #667eea;">React Native</span>
-                            <span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #667eea;">WebSocket</span>
-                            <span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #667eea;">Firebase</span>
+                    <div class="project-card">
+                        <h4>Mashwara</h4>
+                        <p>Interactive advice-sharing platform with real-time messaging, expert profiles, and community engagement features.</p>
+                        <div class="project-card-tags">
+                            <span class="project-card-tag">React Native</span>
+                            <span class="project-card-tag">WebSocket</span>
+                            <span class="project-card-tag">Firebase</span>
                         </div>
                     </div>
                     
-                    <div style="background: #f8f9fa; padding: 30px; border-radius: 15px;">
-                        <h4 style="color: #667eea; margin-bottom: 15px;">Hazzir E-commerce</h4>
-                        <p style="color: #666; line-height: 1.6; margin-bottom: 15px;">Full-featured shopping app with product discovery, order tracking, and smooth UI/UX.</p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-                            <span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #667eea;">React Native</span>
-                            <span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #667eea;">Payment Gateway</span>
-                            <span style="background: white; padding: 6px 12px; border-radius: 15px; font-size: 12px; color: #667eea;">AWS</span>
+                    <div class="project-card">
+                        <h4>Hazzir E-commerce</h4>
+                        <p>Full-featured shopping application with product discovery, order tracking, and seamless checkout experience.</p>
+                        <div class="project-card-tags">
+                            <span class="project-card-tag">React Native</span>
+                            <span class="project-card-tag">Payment Gateway</span>
+                            <span class="project-card-tag">AWS</span>
                         </div>
                     </div>
                 </div>
@@ -786,12 +1087,20 @@
 
         <!-- Contact Section -->
         <div class="contact-section">
-            <h2>Let's Work Together</h2>
-            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
-            <div class="contact-links">
-                <a href="mailto:asmaijaz2955@gmail.com" class="contact-button">📧 Email Me</a>
-                <a href="tel:03175624449" class="contact-button">📱 Call Me</a>
-                <a href="https://linkedin.com/in/asma-ijaz2955" target="_blank" class="contact-button">💼 LinkedIn</a>
+            <div class="contact-content">
+                <h2>Let's Work Together</h2>
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                <div class="contact-links">
+                    <a href="mailto:asmaijaz2955@gmail.com" class="contact-button">
+                        📧 Email Me
+                    </a>
+                    <a href="tel:03175624449" class="contact-button">
+                        📱 Call Me
+                    </a>
+                    <a href="https://linkedin.com/in/asma-ijaz2955" target="_blank" class="contact-button">
+                        💼 LinkedIn
+                    </a>
+                </div>
             </div>
         </div>
     </div>
